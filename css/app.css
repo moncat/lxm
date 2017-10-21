@@ -1,21 +1,36 @@
-/*
- *这是单独为hello mui准备的个性化css，可以覆盖标准mui的css定义；
- * 在实际项目开发时，建议为App单独写一个css文件，从而实现项目的自定义皮肤功能；
- * 
- * */
-.mui-plus header.mui-bar{
-	display: none;
-}
-.mui-plus .mui-bar-nav~.mui-content{
-	padding: 0;
+.title{
+	margin: 20px 15px 10px;
+	color: #6d6d72;
+	font-size: 15px;
 }
 
-/*hm开头的表示仅为 Hello MUI示例定义*/
-.hm-description{
-	margin: .5em 0;
+.oa-contact-cell.mui-table .mui-table-cell {
+	padding: 11px 0;
+	vertical-align: middle;
 }
 
-.hm-description>li {
-	font-size: 14px;
-	color: #8f8f94;
+.oa-contact-cell {
+	position: relative;
+	margin: -11px 0;
+}
+
+.oa-contact-avatar {
+	width: 75px;
+}
+.oa-contact-avatar img {
+	border-radius: 50%;
+}
+.oa-contact-content {
+	width: 100%;
+}
+.oa-contact-name {
+	margin-right: 20px;
+}
+.oa-contact-name, oa-contact-position {
+	float: left;
+}
+
+.h4-title{
+	margin-top: 63px;
+	margin-left: 15px;
 }
