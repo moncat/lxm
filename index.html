@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/jquery-confirm.css" />
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="css/app.css"/>
 		<link rel="stylesheet" href="css/talk.css" />
@@ -14,7 +15,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav">
 			<a id="goBack" class="mui-icon mui-icon-left-nav mui-pull-left" style="display: none;"></a>
-			<h1 class="mui-title">lxm</h1>
+			<h1 class="mui-title">聊小美</h1>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
 			<a id="tab-chat" class="mui-tab-item mui-active" href="#tabbar-with-chat">
@@ -30,43 +31,35 @@
 				<span class="mui-tab-label">本人</span>
 			</a>
 		</nav>
-				
-		<div class="mui-content" style="margin-top: 44px; padding-top: 0px;">
 			
-			<!--
-            	描述：聊天对象
-            -->
+		<div class="mui-content" style="margin-top: 44px; padding-top: 0px;">
 			<div id="tabbar-with-chat" class="mui-control-content mui-active">
 				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
 					<li id ='li-mei' class="mui-table-view-cell">
 						<div class="mui-slider-cell">
 							<div class="oa-contact-cell mui-table">
 								<div class="oa-contact-avatar mui-table-cell">
-									<img src="img/mei.jpg" />
+									<img src="img/head/big/mei.jpg" />
 								</div>
 								<div class="oa-contact-content mui-table-cell">
-									<div class="mui-clearfix">
+									<div class="mui-clearfix" id="userInfoId">
 										<h4 class="oa-contact-name">小美</h4>
-										<div class="mui-h6">【<span >叶落纷飞</span>】
+										<div class="mui-h6">【<span id="nickname" >叶落纷飞</span>】
 										</div>
 									</div>
 									<p class="mui-h6">
-										我做的事不后悔 后悔的事我不做
+										<span id="signature" >我做的事不后悔 后悔的事我不做</span>
 										<span class="mui-badge redpoint" style="color: #fff; background:red;float: right;">1</span>
 									</p>
-									<!--
-                                    	距离我远点，我有傻X恐惧症。
-                                    	吃饱了就犯困，睡醒了就害饿。
-                                    --> 
 								</div>
 							</div>
 						</div>
 					</li>
-					<li id ='li-feng'  class="mui-table-view-cell" style="display: block;">
+					<li id ='li-feng'  class="mui-table-view-cell" style="display: none;">
 						<div class="mui-slider-cell">
 							<div class="oa-contact-cell mui-table">
 								<div class="oa-contact-avatar mui-table-cell">
-									<img src="img/feng.jpg" />
+									<img src="img/head/big/feng.jpg" />
 								</div>
 								<div class="oa-contact-content mui-table-cell">
 									<div class="mui-clearfix">
@@ -82,11 +75,11 @@
 							</div>
 						</div>
 					</li>
-					<li id ='li-fang'  class="mui-table-view-cell" style="display: block;">
+					<li id ='li-fang'  class="mui-table-view-cell" style="display: none;">
 						<div class="mui-slider-cell">
 							<div class="oa-contact-cell mui-table">
 								<div class="oa-contact-avatar mui-table-cell">
-									<img src="img/fang.jpg" />
+									<img src="img/head/big/fang.jpg" />
 								</div>
 								<div class="oa-contact-content mui-table-cell">
 									<div class="mui-clearfix">
@@ -105,127 +98,94 @@
 				</ul>				
 			</div>
 			
+			<!-- 对话内容 -->
 			<div id="tabbar-li-mei" class="mui-control-content" style="margin-top: 66px;">
 				<ul class="chat-thread">
-					<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
-				  	<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
-				  	<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
-				  	<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
+					<li >hello</li>
+					<li data-pid='0' >hello</li>
 				</ul>
 			</div>
 			<div id="tabbar-li-feng" class="mui-control-content" style="margin-top: 66px;">
 				<ul class="chat-thread">
-					<li>你是风风吗</li>
-					<li>你谁</li>
-					<li>我王</li>
-					<li>我风</li>
-				  	<li>哈哈你啊</li>
-					<li>你认识我？</li>
-					<li>不认识</li>
-				  	<li>那里来的2b</li>
+					<li >hello</li>
+					<li data-pid='0' >哈哈哈喽</li>
 				</ul>
 			</div>
 			<div id="tabbar-li-fang" class="mui-control-content" style="margin-top: 66px;">
 				<ul class="chat-thread">
-					<li>你是？</li>
-					<li>你好吗</li>
-					<li>还好，只是不记得你，美女你是？</li>
-					<li>我是芳，还记得我吗</li>
-				  	<li>记得啊，大学同学</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
-				  	<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
-				  	<li>Are we meeting today?</li>
-					<li>yes, what time suits you?</li>
-					<li>I was thinking after lunch, I have a meeting in the morning</li>
+					<li >hello</li>
+					<li data-pid='0' >hi</li>
 				</ul>
 			</div>
+			<div id="send-mei" class="mui-control-content" >
+				<div class="mui-card" style="background: none; box-shadow:none">
+					<ul class="mui-table-view" style="background: none">					
+					</ul>
+					<button type="button" style="padding: 10px 0; margin: 5px 0;" 
+						class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">发  送</button>
+				</div>
+			</div>
+			<div id="send-feng" class="mui-control-content" >
+				<div class="mui-card" style="background: none; box-shadow:none">
+					<ul class="mui-table-view" style="background: none">					
+					</ul>
+					<button type="button" style="padding: 10px 0; margin: 5px 0;" 
+						class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">发  送</button>
+				</div>
+			</div>
+			<div id="send-fang" class="mui-control-content" >
+				<div class="mui-card" style="background: none; box-shadow:none">
+					<ul class="mui-table-view" style="background: none">					
+					</ul>
+					<button type="button" style="padding: 10px 0; margin: 5px 0;" 
+						class="mui-btn mui-btn-primary mui-btn-block mui-btn-outlined">发  送</button>
+				</div>
+			</div>
 			
-			
-			
-			<!--
-            	作者：moncat@126.com
-            	时间：2017-10-17
-            	描述：发现
-            	抢福利:新增随机余额
-            	摇一摇:完成某个成就，摇到小芳，摇掉钱
-            	附近的人:附近没人，或小美的状态
-            	玩游戏:获得装备，减钱
-            			指甲刀：一刀暴击，获得999元
-            	购物:获得商品，影响剧情
-            -->
 			<div id="tabbar-with-find" class="mui-control-content">
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell" id="weal">
-							抢福利
+							<img src="img/icon/hb.jpg" width="16px"/> 抢福利
 					</li>
 					<li class="mui-table-view-cell" id="rock">
-							摇一摇
+							<img src="img/icon/yyy.jpg" width="16px"/> 摇一摇
 					</li>
 					<li class="mui-table-view-cell" id="local">
-							附近的人
+							<img src="img/icon/fj.jpg" width="16px"/> 附近的人
 					</li>					
 				</ul>
 				<ul class="mui-table-view" style="margin-top: 25px;">					
-					<li class="mui-table-view-cell" id="with-equip">
-						<a class="mui-navigate-right">
-							买装备
-						</a>
-					</li>
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right" id="with-goods">
-							淘东西
+							<img src="img/icon/tdx.jpg" width="16px"/> 淘东西
 						</a>
 					</li>
 				</ul>
 			</div>
 		
-			<!--
-            	作者：moncat@126.com
-            	时间：2017-10-17
-            	描述：本人
-            		超级会员:花高价可以购买的功能，效果抢福利可以多抢10倍     只要9999开通会员，
-            		钱包：现有资金   getMoney  setMoney
-            		表情：无表情或本人的状态
-            		成就：获得成就一览表
-            		成就：获得土豪装备， 指甲刀一把，暴击值+999，爱心值-999
-            			
-            		           一万块零钱，真土豪
-            		           一亿  达成一个小目标     
-            		           俺也是有房有车的人了
-            		           
-            -->
 			<div id="tabbar-with-person" class="mui-control-content">
 				<ul class="mui-table-view" style="margin-top: 25px;">						
 					<li class="mui-table-view-cell" id="vip">
+						<img src="img/icon/tq.jpg" width="16px"/>
 						<span>会员特权</span>
+						<span class="mui-badge mui-badge-danger" id="vipLevel" >无</span>
 					</li>					
 					
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right" id="with-money">
-							钱包       
+							<img src="img/icon/qb.jpg" width="16px"/> 钱包       
 						</a>
 					</li>
 					<li class="mui-table-view-cell">
 						<a class="mui-navigate-right" id="with-achievement">
-							   成就
+							   <img src="img/icon/cj.jpg" width="16px"/> 成就
 						</a>
 					</li>	
 				</ul>
 				<ul class="mui-table-view" style="margin-top: 25px;">			
 					<li class="mui-table-view-cell" >
 						<a class="mui-navigate-right" id="with-idea" >
-							   意见反馈
+							   <img src="img/icon/yj.jpg" width="16px"/> 意见反馈
 						</a>
 					</li>
 				</ul>
@@ -237,31 +197,12 @@
 					<div class="mui-card-header">钱包</div>
 					<div class="mui-card-content">
 						<div class="mui-card-content-inner">
-							￥<span style="font-size: 24px;">100000000</span>
+							￥<span id="moneyNum" style="font-size: 24px;">0</span>
 						</div>
 					</div>
-					<div class="mui-card-footer">省吃俭用</div>
+					<div class="mui-card-footer" id='moneyInfo'></div>
 				</div>
 			</div>
-			<!--
-	        	描述：个人
-	        -->
-			<div id="tabbar-with-idea" class="mui-control-content">
-				<h4 class="h4-title">意见反馈</h4>
-				<div class="title">
-					<span>
-						微博
-						<a href="https://m.weibo.cn/u/1613423047">@月夜山猫</a>
-						,写下您的意见或建议，您的想法将有可能出现在下一版本中.
-					</span>
-				</div>
-				<div class="title">
-					<span>
-						图片素材来源于网络，版权归原创作人所有，如有侵犯请告知。
-					</span>
-				</div>
-			</div>
-			
 			
 			<!--
             	描述：购物
@@ -269,115 +210,94 @@
 			<div id="tabbar-with-goods" class="mui-control-content" >
 			    <h4 class="h4-title">淘东西</h4>
 			    <ul class="mui-table-view mui-grid-view">
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			        <li id="xianhua" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
+			                <img class="mui-media-object" src="img/goods/mg.jpg">
 			                <div class="mui-media-body">鲜花</div>
 			            </a>
 			        </li>
-			    	<li class="mui-table-view-cell mui-media mui-col-xs-4">
+			        <li id="shoubiao" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">钻戒</div>
+			                <img class="mui-media-object" src="img/goods/sb.jpg">
+			                <div class="mui-media-body">名表</div>
 			            </a>
 			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			        <li id="shitou" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
+			                <img class="mui-media-object" src="img/goods/zs.jpg">
+			                <div class="mui-media-body">石头</div>
+			            </a>
+			        </li>
+			        <li id="chezi" class="mui-table-view-cell mui-media mui-col-xs-4">
+			            <a href="#">
+			                <img class="mui-media-object" src="img/goods/hc.jpg">
 			                <div class="mui-media-body">车子</div>
 			            </a>
 			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			        <li id="fangzi" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
+			                <img class="mui-media-object" src="img/goods/fz.jpg">
 			                <div class="mui-media-body">房子</div>
 			            </a>
 			        </li>
-			    </ul>    
-			</div>
-			
-			
-			<!--
-            	描述：装备
-            -->
-			<div id="tabbar-with-equip" class="mui-control-content" >
-			    <h4 class="h4-title">买装备</h4>
-			    <ul class="mui-table-view mui-grid-view">
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			         <li id="chaoren" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">屠龙刀</div>
+			                <img class="mui-media-object" src="img/goods/cr.jpg">
+			                <div class="mui-media-body">超人套装</div>
 			            </a>
 			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			         <li id="zhijiadao" class="mui-table-view-cell mui-media mui-col-xs-4">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">倚天剑</div>
+			                <img class="mui-media-object" src="img/goods/zjd.jpg">
+			                <div class="mui-media-body">指甲刀</div>
 			            </a>
 			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#"><img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">邪恶镰刀</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
+			        <li id="businessMan"  class="mui-table-view-cell mui-media mui-col-xs-4" style="display: none;">
 			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">疾风步</div>
-			            </a>
-			        </li>	
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">屠龙刀</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">倚天剑</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#"><img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">邪恶镰刀</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">疾风步</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#"><img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">邪恶镰刀</div>
-			            </a>
-			        </li>
-			        <li class="mui-table-view-cell mui-media mui-col-xs-4">
-			            <a href="#">
-			                <img class="mui-media-object" src="img/mei.jpg">
-			                <div class="mui-media-body">疾风步</div>
+			                <img class="mui-media-object" src="img/goods/hssr.jpg">
+			                <div class="mui-media-body">黑市商人</div>
 			            </a>
 			        </li>
 			    </ul>    
-			</div>
-			<!--
-            	描述：成就列表
-            -->
+			    <div id="belowLine" style="background: white;text-align: center;	color: #ccc;font-size: 12px;">
+					------------------我是有底线的------------------
+			    </div>
+			</div>	
+			
+			<!-- 成就列表 -->
 			<div id="tabbar-with-achievement" class="mui-control-content">
-				<ul class="mui-table-view mui-table-view-chevron">
-					<li class="mui-table-view-cell" id="cj1" >土豪装备</li>
-					<li class="mui-table-view-cell" id="cj2" >一脸懵逼</li>
+				<ul class="mui-table-view mui-table-view-chevron" id="achievement">
 				</ul>
 			</div>
+			
+			<!-- 意见反馈 -->
+			<div id="tabbar-with-idea" class="mui-control-content">
+				<h4 class="h4-title">意见反馈</h4>
+				<div class="title">
+					<span>
+						微博<a id="weibo" href="#">@月夜山猫</a>,写下您的意见或建议，您的想法将有可能出现在<span id="eq">我</span>下一版本中。
+					</span>
+				</div>
+				<div class="title">
+					<span>
+						图片素材来源于网络，版权归原创作人所有，如有侵犯请告知<span id="eqPlus"> . </span> .
+					</span>
+				</div>
+			</div>				
 		</div>
+		<button style="display: none;" id="test">tttttt</button>
 	</body>
 	<script type="text/javascript" src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/jquery-2.0.3.min.js" ></script>
-	<script type="text/javascript" src="js/index.js" ></script>
-	<script type="text/javascript" src="js/tip.js" ></script>
-	<script type="text/javascript" src="js/pageHelper.js" ></script>
-	<script type="text/javascript" src="js/localStorage.js" ></script>
+	<script type="text/javascript" src="js/jquery-confirm.js" ></script>
 	<script type="text/javascript" src="js/webSql.js" ></script>
+	<script type="text/javascript" src="js/common.js" ></script>
+	<script type="text/javascript" src="js/object.js" ></script>
+	<script type="text/javascript" src="js/select.js" ></script>
+	<script type="text/javascript" src="js/update.js" ></script>
+	<script type="text/javascript" src="js/index.js" ></script>
+	<script type="text/javascript" src="js/achievement.js" ></script>
+	<script type="text/javascript" src="js/tip.js" ></script>
+	<script type="text/javascript" src="js/goods.js" ></script>
+<!--	<script type="text/javascript" src="js/localStorage.js" ></script>-->
 </html>
