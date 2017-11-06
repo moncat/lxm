@@ -1,0 +1,36 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/mui.min.js",
+      "js/jquery-2.0.3.min.js",
+      "js/jquery-confirm.js",
+      "js/webSql.js",
+      "js/common.js",
+      "js/object.js",
+      "js/select.js",
+      "js/update.js",
+      "js/index.js",
+      "js/achievement.js",
+      "js/tip.js",
+      "js/goods.js",
+      "css/jquery-confirm.css",
+      "css/mui.min.css",
+      "css/app.css",
+      "css/talk.css",
+      "img/goods/mg.jpg",
+      "img/goods/sb.jpg",
+      "img/goods/zs.jpg",
+      "img/goods/hc.jpg",
+      "img/goods/fz.jpg",
+      "img/goods/cr.jpg",
+      "img/goods/zjd.jpg",
+      "img/goods/hssr.jpg",
+      "img/mei.jpg",
+      "img/feng.jpg",
+      "img/fang.jpg"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}
