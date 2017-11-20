@@ -51,7 +51,7 @@ function initChat(tx){
     tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (15,14,1,"你说的没错。")');
     tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (100003,15,1,"over")');
 
-    tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (6001,0,2,"你是谁啊？")');
+    tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (6001,0,2,"你是谁啊？怎么看你这么熟悉")');
     tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (6002,6001,2,"我是凤凤啊，你是谁？")');
     tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (6005,6002,2,"别管我是谁，我清华毕业")');
     tx.executeSql('INSERT OR IGNORE  INTO t_chat VALUES (6008,6005,2,"清华毕业有什么了不起的")');
@@ -228,14 +228,16 @@ function initMoneyInfo(tx){
 
 //结局表
 function initResult(tx){
-	tx.executeSql('CREATE TABLE IF NOT EXISTS t_result (id unique , info)'); 
+	tx.executeSql('CREATE TABLE IF NOT EXISTS t_result (id unique , info,read)'); 
     tx.executeSql('delete from t_result');  
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100001, "感觉自己萌萌哒……")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100002, "快点坐稳了，老司机发车啦！！！")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100003, "本可以靠颜值，非要靠才华！！！")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100004, "")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100005, "")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100006, "我要睡觉了，88")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100007, "那个，我闺女来找我去逛街，我出去了，88")'); 
-    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100008, "那个，我去洗澡了。byebye")'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100001, "感觉自己萌萌哒……",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100002, "快点坐稳了，老司机发车啦！！！",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100003, "本可以靠颜值，非要靠才华！！！",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100004, "",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100005, "",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100006, "我要睡觉了，88",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100007, "那个，我闺女来找我去逛街，我出去了，88",0)'); 
+    tx.executeSql('INSERT OR IGNORE  INTO t_result VALUES (100008, "那个，我去洗澡了。byebye",0)'); 
 };
+
+//暂时不加帮助

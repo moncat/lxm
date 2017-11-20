@@ -78,7 +78,8 @@ function moneyInfo(id , min ,max , info){
 
 
 //结局
-function result(id , info){
+function result(id , info,read){
 	this.id =id;
 	this.info =info;	
+	this.read =read;	
 }
