@@ -27,31 +27,36 @@ $(function(){
 						var id=obj.attr('data-id');
 						updateData('t_achievement','read',1,id,function(){
 							li.find('span.mui-badge-danger').remove();
-							selectAchievement(11,function(one){
-								if(one.show !=1){
-									//查看10个成就
-									selectYourAchievementCount(function(num){
-										if(num==10){
-											updateData('t_achievement','show',1,16,function(){
-												mui.toast('开启新成就，【成就捕手】');
-												$('#achievement li').eq(15).show();
-												updateData('t_sys_data','value',10,6,function(){
-													$('#eqPlus').show();
-												});
-											});
-										}
-										if(num==20){
-											updateData('t_achievement','show',1,17,function(){
-												mui.toast('开启新成就，【成就大师】');
-												$('#achievement li').eq(16).show();
-												updateData('t_sys_data','value',20,6,function(){
-													$('#eqPlus').show();
-												});
-											});
-										}
-									});
+							
+							if(id==16){
+								//临时开启魅力点击
+								$('#eqPlus').show();
+							}
+							if(id==17){
+								//永久开启魅力点击
+								$('#eqPlus').show();
+								//永久显示点击按钮
+								updateData('t_sys_data', 'value', 1, 6, function() {});
+								//初始化数据   8 已经点击     9需要点击 
+								updateData('t_sys_data', 'value', 0, 8, function() {});
+								updateData('t_sys_data', 'value', 2, 9, function() {});
+							}
+							if(id==15){
+								minusSysData(2,4);
+							}
+							
+							
+							
+							//查看10个成就
+							selectYourAchievementCount(function(num){
+								if(num==10){
+									openAchieve(16,'成就捕手');
+								}
+								if(num==20){
+									openAchieve(17,'成就大师');
 								}
 							});
+							
 						});
 					}
 				});

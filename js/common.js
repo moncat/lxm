@@ -17,3 +17,13 @@ function sleep(numberMillis) {
 	}
 }
 
+function getWeek(){
+	var week = new Date().getDay();
+	var weekId = 1;
+	if(week == 3 || week == 4) {
+		weekId = 2;
+	} else if(week == 5 || week == 6 || week == 0) {
+		weekId = 3;
+	}
+	return weekId;
+}

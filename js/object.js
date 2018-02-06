@@ -1,8 +1,10 @@
 //聊天记录
-function chat(id,pid,uid,content){
+function chat(id,pid,uid,type,info,content){
 	this.id =id;
 	this.pid =pid;
 	this.uid =uid;
+	this.type =type;
+	this.info =info;
 	this.content =content;
 }
 
@@ -78,8 +80,11 @@ function moneyInfo(id , min ,max , info){
 
 
 //结局
-function result(id , info,read){
+function result(id , info,over,charm,local){
 	this.id =id;
 	this.info =info;	
-	this.read =read;	
+	this.over =over;	
+	this.charm =charm;	
+	this.local =local;	
+	
 }

@@ -7,7 +7,7 @@ function selectChatData(pid, uid, fn) {
 			var len = results.rows.length;
 			for(var i = 0; i < len; i++) {
 				var obj = results.rows.item(i);
-				arr.push(new chat(obj.id, obj.pid, obj.uid, obj.content));
+				arr.push(new chat(obj.id, obj.pid, obj.uid, obj.type, obj.info, obj.content));
 			}
 			if(typeof fn === "function") {
 				fn(arr);
@@ -16,6 +16,25 @@ function selectChatData(pid, uid, fn) {
 		}, null);
 	});
 }
+
+
+function selectOneChatData(id, uid, fn) {
+	var db = window.openDatabase('chatDataBase', '1.0', 'chat DB', 2 * 1024 * 1024);
+	db.transaction(function(tx) {
+		tx.executeSql('SELECT * FROM t_chat where id = ' + id + ' and uid=' + uid, [], function(tx, results) {
+			var len = results.rows.length;
+			for(var i = 0; i < len; i++) {
+				var obj = results.rows.item(i);
+			}
+			if(typeof fn === "function") {
+				fn(obj);
+			}
+
+		}, null);
+	});
+}
+
+
 
 //用户信息
 function selectUserData(id, fn) {
@@ -179,7 +198,7 @@ function selectResult(id, fn) {
 	db.transaction(function(tx) {
 		tx.executeSql('SELECT * FROM t_result where id = ?', [id], function(tx, results) {
 			var obj = results.rows.item(0);
-			var one = new result(obj.id, obj.info);
+			var one = new result(obj.id, obj.info,obj.over,obj.charm,obj.local);
 			if(typeof fn === "function") {
 				fn(one);
 			}

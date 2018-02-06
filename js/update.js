@@ -1,3 +1,4 @@
+//公共更新
 function updateData(tableName,field,value,id,fn){
     var db = window.openDatabase('chatDataBase', '1.0', 'chat DB', 2 * 1024 * 1024); 
     db.transaction(function (tx) { 
@@ -13,18 +14,23 @@ function updateData(tableName,field,value,id,fn){
 function updateDataTest(){
     var db = window.openDatabase('chatDataBase', '1.0', 'chat DB', 2 * 1024 * 1024); 
     db.transaction(function (tx) { 
-       tx.executeSql('update t_chat set content ="nice to meet you danshenwang" where id =7;',[], function (tx, results) { 
+       tx.executeSql('update t_chat set content ="nice to meet you wang" where id =7;',[], function (tx, results) { 
      }, null);  
     });
 }
 
+//增加系统数据
 function addSysData(id,value){
 	selectSysData(id,function(one){
 		var now = one.value;
 		value = now+value;
 		updateData('t_sys_data','value',value,id,function(){
-			//丑拒成就
-			if(id==7){
+			//丑拒成就特殊处理 7为更新丑拒系统数据
+			if(id==1){
+				setData('money',value);
+			}else if(id==2){
+				setData('charm',value);
+			}else if(id==7){
 				if(value == 1){
 					openAchieve(12, '被丑拒');
 				}
@@ -40,6 +46,7 @@ function addSysData(id,value){
 	});
 }
 
+//减少系统数据
 function minusSysData(id,value){
 	selectSysData(id,function(one){
 		var now = one.value;
@@ -48,7 +55,13 @@ function minusSysData(id,value){
 		}else{
 			value = 0;
 		}
-		updateData('t_sys_data','value',value,id,function(){});
+		updateData('t_sys_data','value',value,id,function(){
+			if(id==1){
+				setData('money',value);
+			}else if(id==2){
+				setData('charm',value);
+			}
+		});
 	});
 }
 

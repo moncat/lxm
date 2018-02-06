@@ -12,7 +12,7 @@ function setData(key,value){
     storage.setItem(key,value);
 }
 
-function getdata(key){
+function getData(key){
     var storage=window.localStorage;
     return storage.getItem(key);
 }

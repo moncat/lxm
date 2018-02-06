@@ -39,10 +39,8 @@ $(function() {
 			if(one.show != 1) {
 				selectSysData(2, function(charm) {
 					var cv = charm.value;
-					if(cv > 10) {
-						updateData('t_achievement', 'show', 1, 6, function() {
-							mui.toast('开启新成就，【摇到女生】');
-							$('#achievement li').eq(5).show();
+					if(cv > 10) {						
+						openAchieve(6,'摇到女生', function() {						
 							$('#li-fang').show();
 							operChatHint();
 							updateData('t_user', 'display', 1, 3);
@@ -88,15 +86,34 @@ $(function() {
 
 	//增加魅力值
 	$('#eqPlus').get(0).addEventListener('tap', function() {
-		selectSysData(6, function(one) {
-			if(one.value > 0) {
-				mui.alert('你的魅力值不止一点', '魅力值', function() {
-					addSysData(2, 1);
-					minusSysData(6, 1);
-				});
-			} else {
-				$('#eqPlus').hide();
-			}
+		//需要点击
+		selectSysData(9, function(one) {
+			//已经点击
+			selectSysData(8, function(two) {
+				var twoValue = two.value;
+				var oneValue = one.value;
+				if(oneValue> twoValue) {
+						mui.toast('你的魅力值不止一点  '+twoValue+"/"+oneValue);
+						addSysData(8, 1);
+				} else {
+					if(oneValue ==256){					
+						mui.alert('祝贺你，所有魅力值已经收取完毕', '收集完毕');
+						addSysData(2, 1);
+					}else if(oneValue ==512){
+						mui.alert('已经没有魅力值，手机点坏，概不负责', '真的收集完毕');
+					}else if(oneValue ==1024){
+						mui.alert('点击了这么多次，佩服,获得20点魅力值', '套路完毕');
+						addSysData(2, 20);
+						//开启成就
+						openAchieve(19,'坚持不懈');
+					}else {
+						mui.toast('你获得了一点魅力值');
+						addSysData(2, 1);
+						
+					}
+					addSysData(9, oneValue);
+				}
+			});
 		});
 	});
 
@@ -170,14 +187,13 @@ function getFeng(){
 				if(remain == 0) {
 					mui.alert("手机变砖头，啥都没摇到。", '摇一摇');
 				} else if(remain > 500000) {
-					//金钱大于50万开启
-					updateData('t_achievement', 'show', 1, 7, function() {
-						mui.toast('开启新成就，【摇到美女】');
-						$('#achievement li').eq(6).show();
+					//金钱大于50万开启					
+					openAchieve(7,'摇到美女', function() {
 						$('#li-feng').show();
 						operChatHint();
 						updateData('t_user', 'display', 1, 2);
 					});
+					
 				}else{
 					minusMoney();
 				}

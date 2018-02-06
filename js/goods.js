@@ -50,13 +50,13 @@ $(function() {
 						if(e.index == 1) {
 							selectSysData(1, function(money) {
 								var value = money.value;
-								if(value < 500000) {
+								if(value < 1000000) {
 									addSysData(7, 1);
 									mui.alert('钱包余额不足………', '丑拒');
 								} else {
 									mui.alert('拥有车子一辆。', '购买成功', function() {
 										//已购买
-										minusSysData(1, 500000);
+										minusSysData(1, 1000000);
 										updateData('t_product', 'buy', 1, 2);
 									});
 								}
@@ -156,8 +156,8 @@ $(function() {
 						var level = one.value;
 						if(level == 0) {
 							//如果是vip0则可以暴击
-							mui.alert('获得9999元钱', '一刀暴击', function() {
-								addSysData(1, 9999);
+							mui.alert('获得99999元钱', '一刀暴击', function() {
+								addSysData(1, 99999);
 								openAchieve(2, '土豪装备');
 							});
 						} else {
