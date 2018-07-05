@@ -464,13 +464,3 @@ function initMoneyInfo(tx){
     tx.executeSql('INSERT OR IGNORE  INTO t_money_info VALUES (8, 100000000,1000000000000,"普通家庭的小目标")');   
 };
 
-
-//几天未登录，减少数值
-function initTime(tx){
-	tx.executeSql('CREATE TABLE IF NOT EXISTS t_time (id unique , min ,max , info)'); 
-    tx.executeSql('delete from t_money_info');  
-    tx.executeSql('INSERT OR IGNORE  INTO t_money_info VALUES (1, 0,1000,"手里捧着窝窝头，菜里没有一滴油")'); 
-};
-
-
-
